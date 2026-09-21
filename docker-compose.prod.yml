@@ -1,0 +1,35 @@
+# The site on a host that runs several projects behind one shared reverse
+# proxy (nginx-proxy + acme-companion, in /root/edge on blls.me).
+#
+# The container publishes no port. The proxy reaches it over the external
+# network `edge`, terminates TLS, and issues the Let's Encrypt certificate
+# itself from VIRTUAL_HOST / LETSENCRYPT_HOST. Nothing here can touch another
+# project: no host ports, no shared volumes, its own compose project name.
+#
+#   scripts/deploy.sh                   # from a checkout, builds on the server
+#   docker compose -f docker-compose.prod.yml up -d   # on the server, by hand
+
+name: crook
+
+services:
+  web:
+    image: crook-site:latest
+    container_name: crook-web
+    restart: unless-stopped
+    expose:
+      - "3000"
+    environment:
+      VIRTUAL_HOST: "${DOMAIN:-crook.id},www.${DOMAIN:-crook.id}"
+      VIRTUAL_PORT: "3000"
+      LETSENCRYPT_HOST: "${DOMAIN:-crook.id},www.${DOMAIN:-crook.id}"
+      LETSENCRYPT_EMAIL: "${ACME_EMAIL:-gurievcreative@gmail.com}"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  default:
+    name: edge
+    external: true
