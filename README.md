@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# crook-site
 
-## Getting Started
+The website for [Crook](https://github.com/theguriev/crook): the landing page and the plugin registry browser.
 
-First, run the development server:
+Next.js (App Router), Tailwind CSS v4, shadcn/ui on Base UI, `next-themes` for light and dark.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```sh
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `/` — the landing. The first section is a canvas pixel field with the pirate mark and wordmark snapping together on load
+  (`src/components/landing/pixel-field.tsx`); the rest are Crook's own `--snapshot` renders from `crook/docs/images`.
+- `/plugins` — the registry. Search, filters by what a plugin asks for and where it draws, a sheet per plugin
+  (`#owner/name` in the URL opens it), and an "Add a plugin" dialog that writes a checked `plugin.toml` and opens the
+  GitHub new-file editor for a pull request.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where things live
 
-## Learn More
+| Path | What |
+| --- | --- |
+| `src/data/plugins.ts` | The six plugins: description, permissions, previews, releases. Swap for `index.json` when the site should read the live registry. |
+| `src/data/site.ts` | Version, URLs, the install command. |
+| `src/app/globals.css` | The palette as shadcn tokens plus Crook's own (`yolk`, `frame`, status and tag colours), light and dark. |
+| `src/components/site-header.tsx` | Nav with theme toggle and the mobile menu. |
+| `public/images`, `public/plugins` | Screenshots and plugin icons/previews, copied from the sibling repositories. |
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Fonts come from `next/font/google`: Familjen Grotesk for headings, IBM Plex Sans for text, JetBrains Mono for code and the hero.
