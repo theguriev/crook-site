@@ -58,3 +58,24 @@ To roll back by hand on the server: every build is also tagged
 `crook-site:<short sha>`, so `docker tag crook-site:<sha> crook-site:latest`
 followed by `docker compose -f docker-compose.prod.yml up -d` in
 `/opt/crook-site/src` brings that one back.
+
+## Releasing
+
+A tag here publishes nothing — the site goes out when somebody runs `scripts/deploy.sh` — but
+it says which version of the site that is:
+
+```sh
+scripts/release 0.2.0 --push
+```
+
+It sets `version` in `package.json`, writes the `## v0.2.0` section of `CHANGELOG.md` from the
+commit titles since the previous tag with [changelogen](https://github.com/unjs/changelogen),
+commits both as `chore(release): v0.2.0`, tags it and pushes.
+
+Which makes commit titles the changelog, so they are [Conventional
+Commits](https://www.conventionalcommits.org/en/v1.0.0/) — `feat(hero): …`, `fix: …`, the types
+listed under `types` in `changelog.config.json`. A title in any other shape is dropped by the
+generator without a word, so it is refused where it is still easy to fix: `git config
+core.hooksPath scripts/hooks` installs the hook, and `commits.yml` runs the same check on every
+pull request. The history before this predates the convention, so the first release over it
+needs `--allow-untyped`.
