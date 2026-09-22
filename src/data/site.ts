@@ -1,4 +1,5 @@
-export const VERSION = "v0.1.6";
+export const VERSION = "v0.1.9";
+export const RELEASE_LINE = "mark unread, tab numbers, pane zoom, a hidden panel, and hooks for four more agents";
 export const REPO_URL = "https://github.com/theguriev/crook";
 export const RELEASES_URL = "https://github.com/theguriev/crook/releases";
 export const ARCHITECTURE_URL = "https://github.com/theguriev/crook/blob/main/docs/architecture.md";

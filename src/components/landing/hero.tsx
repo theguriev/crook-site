@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRightIcon, DownloadIcon, PlayIcon } from "lucide-react";
 import { CopyCommand } from "@/components/copy-command";
 import { PixelField } from "@/components/landing/pixel-field";
-import { INSTALL_COMMAND, RELEASES_URL, VERSION } from "@/data/site";
+import { INSTALL_COMMAND, RELEASE_LINE, RELEASES_URL, VERSION } from "@/data/site";
 
 /** The first section. Deliberately one look in both themes. */
 export function Hero() {
@@ -24,7 +24,7 @@ export function Hero() {
           href={RELEASES_URL}
           className="inline-flex max-w-full items-center gap-2.5 border border-yolk/40 bg-[#0c0d11]/70 px-3.5 py-1.75 font-mono text-[12px] text-yolk no-underline transition-colors hover:border-yolk hover:bg-yolk hover:text-[#0c0d11] sm:text-[13px]"
         >
-          <span className="text-left">{VERSION} — notarized macOS build, plugin icons and previews in the Store</span>
+          <span className="text-left">{VERSION} — {RELEASE_LINE}</span>
           <ArrowRightIcon className="size-3.5 shrink-0" />
         </Link>
 
