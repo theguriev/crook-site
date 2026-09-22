@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ViewedHomePage } from "@/components/analytics";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Hero } from "@/components/landing/hero";
@@ -45,6 +46,7 @@ const SHELL_FACTS: [string, React.ReactNode][] = [
 export default function LandingPage() {
   return (
     <>
+      <ViewedHomePage />
       <SiteHeader
         mono
         links={NAV}

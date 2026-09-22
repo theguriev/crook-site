@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Familjen_Grotesk, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@/components/analytics";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
       className={`${familjen.variable} ${plexSans.variable} ${jetbrains.variable}`}
     >
       <body className="min-h-svh antialiased">
+        <Analytics />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
