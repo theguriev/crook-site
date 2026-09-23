@@ -98,7 +98,10 @@ export const PLUGINS: Plugin[] = [
         caption: "The panel hung under the chip: session and week, each with a meter and when it resets.",
       },
     ],
-    releases: [{ version: "0.3.1", ref: "844ace5e46133f4097eb6ff2ae75eb2f60ebc40b" }],
+    releases: [
+      { version: "0.3.1", ref: "9740ab3fca01f2ef3ac091f20b07facb81ed8001" },
+      { version: "0.3.0", ref: "844ace5e46133f4097eb6ff2ae75eb2f60ebc40b" },
+    ],
   },
   {
     name: "chips",
@@ -137,7 +140,10 @@ export const PLUGINS: Plugin[] = [
         caption: "The branch picker. Choosing a row types git switch, quoted by the host, and only ever that.",
       },
     ],
-    releases: [{ version: "0.2.1", ref: "cbc686791fbf61631ea693596443b72ed8bf20d9" }],
+    releases: [
+      { version: "0.2.1", ref: "48a6ecb9d4b69e9317f86cc59a504d49cdba0c05" },
+      { version: "0.2.0", ref: "cbc686791fbf61631ea693596443b72ed8bf20d9" },
+    ],
   },
   {
     name: "markdown",
@@ -153,7 +159,10 @@ export const PLUGINS: Plugin[] = [
     ],
     keywords: "copy paste markdown fenced code block output share issue github slack export",
     previews: [],
-    releases: [{ version: "0.2.1", ref: "866ea70c6ca3cd7413283670d02192318f5ceaa6" }],
+    releases: [
+      { version: "0.2.1", ref: "f33bded0256aec586f25116efb4c64ca511ade76" },
+      { version: "0.2.0", ref: "866ea70c6ca3cd7413283670d02192318f5ceaa6" },
+    ],
   },
   {
     name: "dziling",
@@ -172,7 +181,10 @@ export const PLUGINS: Plugin[] = [
     keywords:
       "sound notification bell finished done chime ding audio alert dzin microwave engine coin sonar typewriter",
     previews: [],
-    releases: [{ version: "0.1.1", ref: "f29ff89361d42f9a6a25dc25d117884edb3bad0c" }],
+    releases: [
+      { version: "0.1.1", ref: "a65c36a22e5bee597325e39e5f3e67f081bbb634" },
+      { version: "0.1.0", ref: "f29ff89361d42f9a6a25dc25d117884edb3bad0c" },
+    ],
   },
   {
     name: "emoji",
@@ -199,7 +211,10 @@ export const PLUGINS: Plugin[] = [
         caption: "Beside a corner badge from another plugin: the two slots on a row are separate.",
       },
     ],
-    releases: [{ version: "0.1.1", ref: "2cfea8175148dd7229941ee40619c607b1b5e8e0" }],
+    releases: [
+      { version: "0.1.1", ref: "dffc403a216f7d632c4c522d149d484cd0910f8e" },
+      { version: "0.1.0", ref: "2cfea8175148dd7229941ee40619c607b1b5e8e0" },
+    ],
   },
   {
     name: "worktree",
@@ -225,6 +240,9 @@ export const PLUGINS: Plugin[] = [
         caption: "The badge up close, beside the status dot it does not replace.",
       },
     ],
-    releases: [{ version: "0.1.1", ref: "8c3b138581dc59b19cd0cdfa6497bd3e2d54042f" }],
+    releases: [
+      { version: "0.1.1", ref: "f8de23375f3eba980d548d3b60d1eefa74332f53" },
+      { version: "0.1.0", ref: "8c3b138581dc59b19cd0cdfa6497bd3e2d54042f" },
+    ],
   },
 ];
