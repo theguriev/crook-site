@@ -52,7 +52,7 @@ export const WHERE_FILTER_LABEL: Record<Where, string> = {
 
 export const INDEX_URL =
   "https://github.com/theguriev/crook-plugins/releases/download/index/index.json";
-export const INDEX_BUILT = "2026-09-21";
+export const INDEX_BUILT = "2026-09-22";
 export const ABI = 8;
 
 export function pluginId(p: Plugin) {
@@ -78,7 +78,7 @@ export const PLUGINS: Plugin[] = [
     where: ["header"],
     whereText: "the header, and a panel under it",
     asks: [
-      { kind: "files", text: "Read ~/.claude/.credentials.json, and everything under ~/.claude/projects" },
+      { kind: "files", text: "Read ~/.claude/.credentials.json, everything under ~/.claude/projects" },
       { kind: "net", text: "Reach api.anthropic.com" },
     ],
     keywords:
@@ -113,9 +113,11 @@ export const PLUGINS: Plugin[] = [
     where: ["prompt"],
     whereText: "the row under the line you are typing",
     asks: [
-      { kind: "files", text: "See the working directory of the pane" },
-      { kind: "shell", text: "Type cd {} into your shell" },
-      { kind: "shell", text: "Type git switch {} into your shell" },
+      { kind: "files", text: "See which project each tab is in" },
+      { kind: "files", text: "See the names of the files in ~" },
+      { kind: "shell", text: "Type into your shell, and run: cd …, git switch …" },
+      { kind: "misc", text: "See what Crook can be asked to do, and the keys for it" },
+      { kind: "misc", text: "Use Crook's own crook/window/new-tab, crook/shortcuts/rebind" },
     ],
     keywords: "cwd directory branch git switch cd picker chord shortcut keyboard row prompt status line",
     previews: [
@@ -154,8 +156,9 @@ export const PLUGINS: Plugin[] = [
     where: ["menu"],
     whereText: "the menu on every finished block",
     asks: [
-      { kind: "misc", text: "Read the block its menu is open on" },
-      { kind: "misc", text: "Write to the clipboard" },
+      { kind: "misc", text: "Read the command you run it on, and what it printed" },
+      { kind: "files", text: "See which project each tab is in" },
+      { kind: "misc", text: "Read and change your clipboard" },
     ],
     keywords: "copy paste markdown fenced code block output share issue github slack export",
     previews: [],
@@ -174,8 +177,8 @@ export const PLUGINS: Plugin[] = [
     where: [],
     whereText: "nowhere: it only makes a sound, and has a settings page to pick it",
     asks: [
-      { kind: "misc", text: "Hear when a command finishes" },
-      { kind: "misc", text: "Hear the terminal bell" },
+      { kind: "misc", text: "Know when a command finishes" },
+      { kind: "misc", text: "Know when a program asks for your attention" },
       { kind: "misc", text: "Play a sound" },
     ],
     keywords:
@@ -224,7 +227,7 @@ export const PLUGINS: Plugin[] = [
     blurb: "A mark on the corner of every tab whose directory is a linked git worktree.",
     where: ["tabs"],
     whereText: "the badge on the corner of a tab row",
-    asks: [{ kind: "files", text: "See the working directory of each tab" }],
+    asks: [{ kind: "files", text: "See which project each tab is in" }],
     keywords: "git worktree branch checkout badge tab row mark corner linked",
     previews: [
       {

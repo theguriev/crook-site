@@ -22,7 +22,7 @@ npm run build && npm start
 
 | Path | What |
 | --- | --- |
-| `src/data/plugins.ts` | The six plugins: description, permissions, previews, releases. Swap for `index.json` when the site should read the live registry. |
+| `src/data/plugins.ts` | The six plugins: description, permissions, previews, releases. A hand-kept copy of the registry's `index.json`: after a plugin release, `npm run check:plugins` says where the permissions, versions or release commits no longer match it. Swap for `index.json` when the site should read the live registry. |
 | `src/data/site.ts` | Version, URLs, the install command. |
 | `src/app/globals.css` | The palette as shadcn tokens plus Crook's own (`yolk`, `frame`, status and tag colours), light and dark. |
 | `src/components/site-header.tsx` | Nav with theme toggle and the mobile menu. |
