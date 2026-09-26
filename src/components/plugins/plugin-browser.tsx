@@ -88,6 +88,8 @@ export function PluginBrowser({ plugins, onAdd }: { plugins: Plugin[]; onAdd: ()
     return out.map((r) => r.p);
   }, [plugins, q, asks, wheres, sort]);
 
+  const filtering = asks.size > 0 || wheres.size > 0;
+
   // "/" focuses the search unless a dialog has the keyboard.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -193,9 +195,32 @@ export function PluginBrowser({ plugins, onAdd }: { plugins: Plugin[]; onAdd: ()
         </div>
       ) : (
         <div className="rounded-xl border border-dashed border-line-2 bg-card p-10 text-center text-ink-2">
-          <b className="mb-1.5 block font-heading text-xl text-foreground">Nothing matches &ldquo;{q}&rdquo;.</b>
-          Try what it draws or what it asks for, or write the one that is missing.
-          <div className="mt-4">
+          {/* What ruled everything out, rather than the search alone: with the box empty and
+              the chips doing the ruling out, this used to say `Nothing matches ""`. */}
+          <b className="mb-1.5 block font-heading text-xl text-foreground">
+            {q ? (
+              <>
+                Nothing matches &ldquo;{q}&rdquo;{filtering ? " with these filters" : ""}.
+              </>
+            ) : (
+              "No plugin fits these filters."
+            )}
+          </b>
+          {asks.size > 0
+            ? "A plugin has to ask for every permission ticked, so fewer ticks find more."
+            : "Try what it draws or what it asks for, or write the one that is missing."}
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {filtering && (
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setAsks(new Set());
+                  setWheres(new Set());
+                }}
+              >
+                Clear filters
+              </Button>
+            )}
             <Button variant="outline" onClick={onAdd}>
               Add a plugin
             </Button>
