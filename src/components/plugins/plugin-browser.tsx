@@ -33,7 +33,14 @@ function subscribeHash(cb: () => void) {
   return () => window.removeEventListener("hashchange", cb);
 }
 function readHash() {
-  return decodeURIComponent(location.hash.replace(/^#/, ""));
+  const hash = location.hash.replace(/^#/, "");
+  // A link can arrive mangled — cut short mid-escape, or with a stray `%` — and decoding it
+  // throws, which took the whole page down with it. What cannot be decoded names no plugin.
+  try {
+    return decodeURIComponent(hash);
+  } catch {
+    return hash;
+  }
 }
 
 function score(p: Plugin, q: string) {
