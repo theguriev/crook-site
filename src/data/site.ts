@@ -1,5 +1,5 @@
-export const VERSION = "v0.1.12";
-export const RELEASE_LINE = "updates for Crook and its plugins from the window, and groups hung off a rail under their branch";
+export const VERSION = "v0.1.13";
+export const RELEASE_LINE = "a week of fixes: Tab completion, shell history, restored sessions and git through symlinks";
 export const REPO_URL = "https://github.com/theguriev/crook";
 export const RELEASES_URL = "https://github.com/theguriev/crook/releases";
 export const ARCHITECTURE_URL = "https://github.com/theguriev/crook/blob/main/docs/architecture.md";
