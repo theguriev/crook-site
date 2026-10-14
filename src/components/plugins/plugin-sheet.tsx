@@ -131,11 +131,11 @@ function Body({ plugin }: { plugin: Plugin }) {
       <section className="mt-6.5">
         <SectionTitle>links</SectionTitle>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" render={<Link href={plugin.repo} />}>Repository</Button>
-          <Button variant="outline" render={<Link href={`${REGISTRY_URL}/blob/main/plugins/${plugin.owner}.${plugin.name}/plugin.toml`} />}>
+          <Button variant="outline" nativeButton={false} render={<Link href={plugin.repo} />}>Repository</Button>
+          <Button variant="outline" nativeButton={false} render={<Link href={`${REGISTRY_URL}/blob/main/plugins/${plugin.owner}.${plugin.name}/plugin.toml`} />}>
             Registry entry
           </Button>
-          <Button variant="outline" render={<Link href={`${plugin.repo}/issues`} />}>Report a problem</Button>
+          <Button variant="outline" nativeButton={false} render={<Link href={`${plugin.repo}/issues`} />}>Report a problem</Button>
         </div>
       </section>
     </div>
