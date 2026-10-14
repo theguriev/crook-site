@@ -20,9 +20,11 @@ type Props = {
   action: React.ReactNode;
   /** Set on the landing, where the nav is mono to match the field. */
   mono?: boolean;
+  /** Set on the landing: a clear bar over the world, which is always night, so no theme toggle. */
+  overlay?: boolean;
 };
 
-export function SiteHeader({ section, links, menuOnly = [], action, mono }: Props) {
+export function SiteHeader({ section, links, menuOnly = [], action, mono, overlay }: Props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -33,7 +35,12 @@ export function SiteHeader({ section, links, menuOnly = [], action, mono }: Prop
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-background/85 backdrop-blur-md">
+    <header
+      className={cn(
+        "sticky top-0 z-20 border-b backdrop-blur-md",
+        overlay ? "-mb-15 border-white/[0.06] bg-[#050608]/35" : "border-border bg-background/85",
+      )}
+    >
       <div className="relative mx-auto flex h-15 max-w-[1160px] items-center gap-3.5 px-5 sm:px-7 md:gap-7">
         <Link href="/" className="flex items-center gap-2.5 font-heading text-xl font-bold no-underline">
           <PirateMark />
@@ -55,7 +62,7 @@ export function SiteHeader({ section, links, menuOnly = [], action, mono }: Prop
         </nav>
 
         <div className="ml-auto flex items-center gap-2 md:ml-0">
-          <ThemeToggle />
+          {!overlay && <ThemeToggle />}
           {action}
           <Button
             variant="outline"
