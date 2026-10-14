@@ -226,3 +226,68 @@
 @utility shot {
   @apply overflow-hidden rounded-xl border border-line-2 bg-frame shadow-lift;
 }
+
+/* ------------------------------------------------------------------ the landing's world */
+
+.landing {
+  background: #050608;
+  color: var(--foreground);
+  min-height: 100svh;
+}
+
+/* what shows before the world draws, and instead of it without WebGL */
+.world-backdrop {
+  background:
+    radial-gradient(circle at 72% 18%, rgba(249, 217, 73, 0.95) 0 3.2vmin, rgba(249, 217, 73, 0.18) 3.4vmin, transparent 22vmin),
+    linear-gradient(to bottom, #030408 0%, #0c1018 52%, #141925 58%, #04060b 59%, #02040a 100%);
+}
+
+@utility glass {
+  @apply border border-white/[0.09] bg-[#0a0c11]/62 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] backdrop-blur-xl;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 80px -30px rgba(0, 0, 0, 0.9);
+}
+
+.landing .shot {
+  @apply border-white/10;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.95);
+}
+
+.landing figcaption {
+  @apply rounded-lg bg-black/45 px-3 py-2 backdrop-blur-md;
+}
+
+.hero-scrim {
+  background:
+    linear-gradient(90deg, rgba(5, 6, 8, 0.72) 0%, rgba(5, 6, 8, 0.35) 38%, transparent 62%),
+    linear-gradient(0deg, rgba(5, 6, 8, 0.7) 0%, transparent 30%);
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+}
+.hero-in {
+  animation: hero-in 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes scroll-cue {
+  0% { transform: scaleX(0); transform-origin: left; }
+  50% { transform: scaleX(1); transform-origin: left; }
+  50.01% { transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+.scroll-cue {
+  animation: scroll-cue 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-in,
+  .scroll-cue {
+    animation: none;
+  }
+}

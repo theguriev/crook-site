@@ -60,9 +60,18 @@ export function Legend() {
   );
 }
 
-/** Text on one side, a picture on the other. `flip` puts the picture first on wide screens. */
-export function Feature({
+/** A dark pane of frosted glass over the world, for anything that has to be read. */
+export function Glass({ className, ...props }: React.ComponentProps<"div">) {
+  return <div className={cn("glass rounded-2xl", className)} {...props} />;
+}
+
+/**
+ * One stop of the voyage. The copy holds still on one side while the camera settles on what the
+ * section is about on the other; the pictures come up past it after a screen of open sea.
+ */
+export function Chapter({
   id,
+  index,
   flip,
   eyebrow,
   title,
@@ -70,6 +79,7 @@ export function Feature({
   aside,
 }: {
   id: string;
+  index: number;
   flip?: boolean;
   eyebrow: React.ReactNode;
   title: string;
@@ -77,19 +87,21 @@ export function Feature({
   aside: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-16 border-b border-border py-14 sm:py-21">
-      <Container
-        className={cn(
-          "grid items-start gap-12 md:grid-cols-[minmax(0,.7fr)_minmax(0,1.3fr)]",
-          flip && "md:grid-cols-[minmax(0,1.3fr)_minmax(0,.7fr)]",
-        )}
-      >
-        <div className={cn("md:sticky md:top-22", flip && "md:order-2")}>
-          {eyebrow}
-          <h2 className="mt-3 mb-4 text-[28px] leading-[1.1] font-bold sm:text-[34px]">{title}</h2>
-          <div className="[&_p]:max-w-[48ch] [&_p]:text-ink-2 [&_p+p]:mt-3">{children}</div>
+    <section id={id} data-station className="relative scroll-mt-0 py-[16vh]">
+      <Container className="grid items-start gap-10 md:grid-cols-2 md:gap-16">
+        <div className={cn("md:sticky md:top-[14vh]", flip && "md:order-2")}>
+          <Glass className="p-6 sm:p-8">
+            <div className="mb-4 flex items-center gap-3 font-mono text-[11.5px] tracking-[0.18em] text-white/50 uppercase">
+              <span className="text-yolk">{String(index).padStart(2, "0")}</span>
+              <i className="block h-px w-8 bg-white/25" />
+              {id}
+            </div>
+            {eyebrow}
+            <h2 className="mt-3 mb-4 font-heading text-[30px] leading-[1.02] font-bold tracking-[-0.02em] uppercase sm:text-[40px]">{title}</h2>
+            <div className="[&_p]:max-w-[50ch] [&_p]:text-ink-2 [&_p+p]:mt-3">{children}</div>
+          </Glass>
         </div>
-        <div className={cn(flip && "md:order-1")}>{aside}</div>
+        <div className={cn("grid gap-5 md:pt-[78vh] md:pb-[12vh]", flip && "md:order-1")}>{aside}</div>
       </Container>
     </section>
   );
@@ -107,38 +119,11 @@ export function Bullets({ items }: { items: React.ReactNode[] }) {
   );
 }
 
-export function FactsStrip() {
-  const facts = [
-    ["tab", "One agent, its transcript and its branch"],
-    ["status", "Written by the agent itself, over the terminal it already has"],
-    ["output", "A list of commands, each with everything it printed"],
-    ["plugins", "Sandboxed .wasm that must ask before it reaches anything"],
-  ];
-  return (
-    <section className="border-b border-border bg-muted">
-      <Container className="grid sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-0">
-        {facts.map(([k, v], i) => (
-          <div
-            key={k}
-            className={cn(
-              "border-b border-border py-4 last:border-b-0 sm:py-4.5 lg:border-b-0 lg:border-r lg:py-5.5 lg:pr-6 lg:last:border-r-0",
-              i > 0 && "lg:pl-6",
-            )}
-          >
-            <div className="mb-1.5 font-mono text-[12.5px] text-muted-foreground">{k}</div>
-            <div className="font-heading text-[17px] leading-[1.3] font-semibold sm:text-[18px]">{v}</div>
-          </div>
-        ))}
-      </Container>
-    </section>
-  );
-}
-
 export function PluginTile({ name, blurb, href }: { name: string; blurb: string; href: string }) {
   return (
     <Link
       href={href}
-      className="flex items-center gap-2.5 rounded-[10px] border border-border bg-card px-3 py-2.5 no-underline transition-colors hover:border-line-2"
+      className="flex items-center gap-2.5 rounded-[12px] border border-white/10 bg-white/[0.04] px-3 py-2.5 no-underline transition-colors hover:border-yolk/50 hover:bg-white/[0.07]"
     >
       <Image src={`/plugins/${name}/icon.png`} alt="" width={32} height={32} className="size-8 shrink-0 rounded-lg" />
       <span>

@@ -4,7 +4,8 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Hero } from "@/components/landing/hero";
 import { AgentStatusDrawing, PirateChipDrawing } from "@/components/landing/drawings";
-import { Bullets, Container, Eyebrow, FactsStrip, Feature, Legend, PluginTile, Shot } from "@/components/landing/sections";
+import { Bullets, Chapter, Container, Eyebrow, Glass, Legend, PluginTile, Shot } from "@/components/landing/sections";
+import { ChapterRail, WorldCanvas } from "@/components/landing/world-canvas";
 import { CopyCommand } from "@/components/copy-command";
 import { Button } from "@/components/ui/button";
 import { PLUGINS } from "@/data/plugins";
@@ -23,6 +24,17 @@ const NAV = [
   { href: "/plugins", label: "Plugins" },
   { href: ARCHITECTURE_URL, label: "Architecture" },
   { href: REPO_URL, label: "GitHub" },
+];
+
+const CHAPTERS = [
+  { id: "top", label: "harbour" },
+  { id: "agent", label: "agents" },
+  { id: "blocks", label: "blocks" },
+  { id: "find", label: "find" },
+  { id: "palette", label: "palette" },
+  { id: "plugins", label: "plugins" },
+  { id: "shell", label: "shell" },
+  { id: "install", label: "install" },
 ];
 
 const PLUGIN_BLURBS: Record<string, string> = {
@@ -45,9 +57,12 @@ const SHELL_FACTS: [string, React.ReactNode][] = [
 
 export default function LandingPage() {
   return (
-    <>
+    <div className="dark landing">
       <ViewedHomePage />
+      <WorldCanvas />
+      <ChapterRail chapters={CHAPTERS} />
       <SiteHeader
+        overlay
         mono
         links={NAV}
         menuOnly={[{ href: "#install", label: "Install" }]}
@@ -58,11 +73,11 @@ export default function LandingPage() {
         }
       />
 
-      <main>
+      <main className="relative z-10">
         <Hero />
-        <FactsStrip />
 
-        <Feature
+        <Chapter
+          index={1}
           id="agent"
           eyebrow={<Eyebrow accent="crook --agent"> running · needs-input · failed · idle</Eyebrow>}
           title="The agent reports its own status."
@@ -94,9 +109,10 @@ export default function LandingPage() {
               <>The window title carries the count, so a switcher tells three Crooks apart and says which one stopped for you.</>,
             ]}
           />
-        </Feature>
+        </Chapter>
 
-        <Feature
+        <Chapter
+          index={2}
           id="blocks"
           flip
           eyebrow={<Eyebrow accent="blocks"> · one command, its output, a boundary</Eyebrow>}
@@ -120,9 +136,10 @@ export default function LandingPage() {
               <>Blocks are what find, the palette and the markdown plugin work on.</>,
             ]}
           />
-        </Feature>
+        </Chapter>
 
-        <Feature
+        <Chapter
+          index={3}
           id="find"
           eyebrow={<Eyebrow accent="cmd-f"> · ctrl-shift-f off macOS</Eyebrow>}
           title="Find searches every block at once."
@@ -138,9 +155,10 @@ export default function LandingPage() {
             Every finished command and the open one, counted in the bar. The current match is in the accent, the rest in amber. It is a search
             and not a filter, so the lines between the hits stay where they are.
           </p>
-        </Feature>
+        </Chapter>
 
-        <Feature
+        <Chapter
+          index={4}
           id="palette"
           flip
           eyebrow={
@@ -167,9 +185,10 @@ export default function LandingPage() {
               <><code>?</code> answers &ldquo;what is bound to what&rdquo; from the same box.</>,
             ]}
           />
-        </Feature>
+        </Chapter>
 
-        <Feature
+        <Chapter
+          index={5}
           id="plugins"
           eyebrow={<Eyebrow accent="plugins"> · sandboxed .wasm · installing is not allowing</Eyebrow>}
           title="A plugin describes what it wants drawn. The host paints it."
@@ -209,27 +228,31 @@ export default function LandingPage() {
               Browse the registry
             </Button>
           </div>
-        </Feature>
+        </Chapter>
 
-        <section className="border-b border-border py-14 sm:py-18">
+        <section id="shell" data-station className="relative flex min-h-svh flex-col justify-center py-[14vh]">
           <Container>
-            <Eyebrow accent="and underneath"> · a real shell in every pane</Eyebrow>
-            <h2 className="mt-2.5 mb-7 text-[26px] font-bold sm:text-[30px]">The parts a terminal has to get right anyway.</h2>
-            <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mx-auto mb-10 max-w-[760px] text-center">
+              <Eyebrow accent="and underneath"> · a real shell in every pane</Eyebrow>
+              <h2 className="mt-3 font-heading text-[32px] leading-[1.02] font-bold tracking-[-0.02em] uppercase sm:text-[48px]">
+                The parts a terminal has to get right anyway.
+              </h2>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {SHELL_FACTS.map(([k, v]) => (
-                <div key={k} className="bg-card px-5.5 py-5">
+                <Glass key={k} className="px-5.5 py-5">
                   <div className="mb-1.5 font-heading text-lg font-semibold">{k}</div>
                   <p className="text-[15px] text-ink-2">{v}</p>
-                </div>
+                </Glass>
               ))}
             </div>
           </Container>
         </section>
 
-        <section id="install" className="scroll-mt-16 pt-14 pb-6 sm:pt-21">
+        <section id="install" data-station className="relative flex min-h-svh flex-col justify-end pt-[30vh] pb-16">
           <Container>
             <Eyebrow accent="install"> · one binary, nothing else on the machine</Eyebrow>
-            <h2 className="mt-2.5 mb-2 text-[26px] font-bold sm:text-[34px]">Get Crook</h2>
+            <h2 className="mt-3 mb-3 font-heading text-[40px] leading-none font-bold tracking-[-0.02em] uppercase sm:text-[64px]">Get Crook</h2>
             <p className="mb-7.5 max-w-[60ch] text-ink-2">
               The script reads the latest release, checks the archive against the <code>SHA256SUMS</code> published beside it, and puts the
               binary in <code>~/.local/bin</code>.
@@ -254,7 +277,7 @@ export default function LandingPage() {
                 </Button>
               </Platform>
             </div>
-            <p className="mt-6.5 max-w-[70ch] text-[14.5px] text-muted-foreground [&_code]:rounded bg-transparent [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-px">
+            <p className="mt-6.5 max-w-[70ch] text-[14.5px] text-muted-foreground [&_code]:rounded [&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-px">
               Building it yourself is <code>cargo build --release</code> with a stable Rust toolchain and no build scripts. <code>script/run</code>{" "}
               starts it from the checkout; <code>--snapshot</code> draws a frame to a PNG without opening a window.
             </p>
@@ -262,14 +285,16 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <SiteFooter />
-    </>
+      <div className="relative z-10 bg-[#050608]/80 backdrop-blur-md">
+        <SiteFooter />
+      </div>
+    </div>
   );
 }
 
 function Platform({ title, meta, children }: { title: string; meta: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-5.5 [&>p]:mb-4 [&>p]:text-[15px] [&>p]:text-ink-2">
+    <div className="glass rounded-2xl p-5.5 [&>p]:mb-4 [&>p]:text-[15px] [&>p]:text-ink-2">
       <h3 className="mb-1 text-[19px] font-semibold">{title}</h3>
       <div className="mb-3.5 font-mono text-[12.5px] text-muted-foreground">{meta}</div>
       {children}
