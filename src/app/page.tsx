@@ -67,7 +67,7 @@ export default function LandingPage() {
         links={NAV}
         menuOnly={[{ href: "#install", label: "Install" }]}
         action={
-          <Button render={<a href="#install" />} className="h-9 rounded-[3px] px-4 font-mono text-[15px] font-semibold">
+          <Button nativeButton={false} render={<a href="#install" />} className="h-9 rounded-[3px] px-4 font-mono text-[15px] font-semibold">
             Install
           </Button>
         }
@@ -224,7 +224,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="mt-4.5">
-            <Button variant="outline" size="lg" render={<Link href="/plugins" />}>
+            <Button variant="outline" size="lg" nativeButton={false} render={<Link href="/plugins" />}>
               Browse the registry
             </Button>
           </div>
@@ -260,7 +260,7 @@ export default function LandingPage() {
             <div className="grid gap-4 md:grid-cols-3">
               <Platform title="macOS" meta="Apple Silicon and Intel · one universal .app">
                 <p>Signed, notarized and stapled. Opens on a double click with no dialog and no network. Drag it to Applications.</p>
-                <Button size="lg" render={<Link href={RELEASES_URL} />}>
+                <Button size="lg" nativeButton={false} render={<Link href={RELEASES_URL} />}>
                   Download the .dmg
                 </Button>
               </Platform>
@@ -272,7 +272,7 @@ export default function LandingPage() {
               </Platform>
               <Platform title="Windows" meta="x86_64 · .zip">
                 <p>The frameless window and shell integration are built for it and not yet run on it. The architecture notes say what was checked instead.</p>
-                <Button variant="outline" size="lg" render={<Link href={RELEASES_URL} />}>
+                <Button variant="outline" size="lg" nativeButton={false} render={<Link href={RELEASES_URL} />}>
                   Download the .zip
                 </Button>
               </Platform>

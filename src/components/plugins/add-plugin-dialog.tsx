@@ -147,6 +147,7 @@ export function AddPluginDialog({ open, onOpenChange }: { open: boolean; onOpenC
             <div className="mt-4 flex flex-wrap gap-2.5 [&>*]:max-sm:w-full">
               <Button
                 size="lg"
+                nativeButton={false}
                 render={<Link href={v.prUrl} target="_blank" rel="noopener" />}
                 aria-disabled={!v.all}
                 className={cn(!v.all && "pointer-events-none opacity-45")}
