@@ -308,7 +308,7 @@ export function makeTower(pools: Pool[]): Part {
     object: group,
     update(t, _dt, { station }) {
       // between "find" and its neighbours the matches light up
-      const wantFind = station > 2.55 && station < 3.6;
+      const wantFind = station > 3.55 && station < 4.6; // find is station 4
       if (wantFind !== lit) {
         lit = wantFind;
         for (const s of slabs) {

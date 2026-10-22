@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRightIcon, DownloadIcon, PlayIcon } from "lucide-react";
 import { CopyCommand } from "@/components/copy-command";
-import { INSTALL_COMMAND, RELEASE_LINE, RELEASES_URL, VERSION } from "@/data/site";
+import { DMG_URL, INSTALL_COMMAND, RELEASE_LINE, RELEASES_URL, VERSION } from "@/data/site";
 
 const FACTS = [
   ["tab", "One agent, its transcript and its branch"],
@@ -66,9 +66,13 @@ export function Hero() {
               className="w-full border-white/12 bg-black/45 py-2.5 text-left text-[13px] backdrop-blur-md"
             />
             <p className="mt-2 font-mono text-[12px] text-[#8b8f9a]">
-              macOS and Linux. Windows is a{" "}
+              Linux, and the bare binary on macOS. The Mac app is a notarized{" "}
+              <a href={DMG_URL} className="text-[#b7b9c0]">
+                .dmg
+              </a>
+              ; Windows, an experimental{" "}
               <Link href={RELEASES_URL} className="text-[#b7b9c0]">
-                .zip on the releases page
+                .zip
               </Link>
               . MIT.
             </p>

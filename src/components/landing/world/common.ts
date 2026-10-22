@@ -169,7 +169,7 @@ export type Part = {
 
 export type FrameContext = {
   camera: THREE.PerspectiveCamera;
-  /** Fractional station index: 0 at the hero, 1 at agents, and so on. */
+  /** Fractional station index: 0 at the hero, 1 at agents, 2 at answering, and so on. */
   station: number;
   /** The pointer, -1…1 across the viewport. */
   pointer: THREE.Vector2;

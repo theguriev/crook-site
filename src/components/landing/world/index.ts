@@ -16,6 +16,7 @@ import { makeBuoys, makeLetters, makeLighthouse, makePalette, makePier, makePlug
 const STATIONS: { cam: [number, number, number]; look: [number, number, number]; pirate: [number, number, number]; size: number }[] = [
   { cam: [0, 7, 34], look: [0, 14.5, -30], pirate: [0, 8.5, -31], size: 7.4 }, // top
   { cam: [-22, 10, -36], look: [-10, 3, -76], pirate: [9, 7, -64], size: 1.4 }, // agent
+  { cam: [-1, 6, -49], look: [1.5, 5, -76], pirate: [10.5, 5.6, -71], size: 0.75 }, // answer: up close to the buoy that is waiting
   { cam: [46, 14, -58], look: [32, 13, -98], pirate: [18, 22.6, -98], size: 1.4 }, // blocks
   { cam: [-44, 10, -90], look: [-38, 12, -138], pirate: [-24, 24.6, -138], size: 1.2 }, // find
   { cam: [40, 11, -140], look: [26, 9, -178], pirate: [25, 13, -160], size: 1.3 }, // palette

@@ -52,7 +52,7 @@ export const WHERE_FILTER_LABEL: Record<Where, string> = {
 
 export const INDEX_URL =
   "https://github.com/theguriev/crook-plugins/releases/download/index/index.json";
-export const INDEX_BUILT = "2026-09-22";
+export const INDEX_BUILT = "2026-09-27";
 export const ABI = 8;
 
 export function pluginId(p: Plugin) {
