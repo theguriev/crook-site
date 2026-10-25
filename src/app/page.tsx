@@ -145,6 +145,7 @@ export default function LandingPage() {
             items={[
               <>Allow, Deny and Go to tab wait for a second of stillness before a key or a press reaches them. There is no &ldquo;always allow&rdquo;.</>,
               <>An Edit, MultiEdit or Write request is drawn as the change, in a diff&rsquo;s colours.</>,
+              <>The command is drawn the way the shell will read it: left to right, with lookalikes, blank-looking characters and stray marks written out. A request with any text that is not ASCII is allowed only after it has been read as written, every such character spelled out as its code point.</>,
               <>Claude Code&rsquo;s own dialog stays up in its tab, and whichever is answered first wins. Inside tmux the card finds the Crook pane holding tmux&rsquo;s client.</>,
               <>With more than one waiting, the chord opens the list, oldest first. <em>Let agents ask in Crook</em>, on the Appearance page, turns answering off.</>,
             ]}
