@@ -109,6 +109,7 @@ export default function LandingPage() {
           <Bullets
             items={[
               <>Crook&rsquo;s plugin makes Claude Code say all of it by itself: <code>claude plugin marketplace add theguriev/crook</code>, then <code>claude plugin install crook@crook</code>. Codex and Copilot CLI take the same plugin; <code>crook --agent-hooks</code> prints the hooks to merge by hand.</>,
+              <>The same plugin hands Claude Code <code>crook mcp</code>: ask in the chat and it opens a tab or a split with a command, waits for it, reads what it printed and closes it. Only its own panes, and it can neither type into a pane nor answer a permission request.</>,
               <>With no hooks at all, Claude Code&rsquo;s own title still says running and idle.</>,
               <>A row waiting on you is washed amber. The header counts them, and <kbd>cmd</kbd>+<kbd>j</kbd> goes to the next one.</>,
               <>The window title carries the count, so a switcher tells three Crooks apart and says which one stopped for you. Behind another window, a pane that turns amber posts a desktop notification on Linux and from Crook.app on macOS, where the dock carries the count.</>,
