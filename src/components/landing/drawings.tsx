@@ -51,7 +51,7 @@ export function AgentStatusDrawing() {
               r.kind === "wait" ? "bg-[#3a2f26]" : "bg-[#1f222a]",
             )}
           >
-            <StatusDot kind={r.kind} className="size-3.5" />
+            <StatusDot kind={r.kind} className="size-4.5" />
             <div>
               <div className="text-[15px] text-[#ecebe4]">{r.name}</div>
               <div className="font-mono text-[12.5px] text-frame-mute">{r.branch}</div>

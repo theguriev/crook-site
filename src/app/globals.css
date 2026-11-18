@@ -264,6 +264,15 @@
     linear-gradient(0deg, rgba(5, 6, 8, 0.7) 0%, transparent 30%);
 }
 
+/* a phone has the copy across the whole width, so the whole width is dimmed behind it */
+@media (max-width: 639px) {
+  .hero-scrim {
+    background:
+      linear-gradient(180deg, rgba(5, 6, 8, 0.74) 0%, rgba(5, 6, 8, 0.5) 40%, transparent 54%),
+      linear-gradient(0deg, rgba(5, 6, 8, 0.7) 0%, transparent 30%);
+  }
+}
+
 @keyframes hero-in {
   from {
     opacity: 0;

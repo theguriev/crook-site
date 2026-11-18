@@ -1,5 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
+import { BellIcon, XIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Container({ className, ...props }: React.ComponentProps<"div">) {
@@ -46,17 +47,34 @@ export function StatusDot({ kind, className }: { kind: "run" | "wait" | "fail" |
     fail: "bg-status-fail",
     idle: "bg-status-idle",
   }[kind];
-  return <i className={cn("inline-block size-2.75 shrink-0 rounded-full", color, className)} />;
+  // Crook's own marks: a bell on the disc that waits and a cross on the one that failed, so the
+  // status is in the shape as well as the colour.
+  const Glyph = { run: null, wait: BellIcon, fail: XIcon, idle: null }[kind];
+  return (
+    <i className={cn("inline-grid size-4 shrink-0 place-items-center rounded-full text-[#16181d]", color, className)}>
+      {Glyph && <Glyph className="size-[62%]" strokeWidth={3} />}
+    </i>
+  );
 }
 
 export function Legend() {
   return (
-    <div className="grid grid-cols-2 gap-x-4.5 gap-y-1.5 px-1 text-[13.5px] text-ink-2 sm:grid-cols-4">
+    <div className="flex flex-wrap gap-x-5 gap-y-1.5 rounded-lg bg-black/45 px-3 py-2 text-[13.5px] text-ink-2 backdrop-blur-md">
       <span className="flex items-center gap-2 whitespace-nowrap"><StatusDot kind="run" />running</span>
       <span className="flex items-center gap-2 whitespace-nowrap"><StatusDot kind="wait" />needs input</span>
       <span className="flex items-center gap-2 whitespace-nowrap"><StatusDot kind="fail" />failed</span>
       <span className="flex items-center gap-2 whitespace-nowrap"><StatusDot kind="idle" />idle</span>
     </div>
+  );
+}
+
+/** A line about a picture that is not a figure's caption: backed like one, since it sits over the world. */
+export function Note({ className, ...props }: React.ComponentProps<"p">) {
+  return (
+    <p
+      className={cn("rounded-lg bg-black/45 px-3 py-2 text-[13.5px] text-muted-foreground backdrop-blur-md", className)}
+      {...props}
+    />
   );
 }
 
