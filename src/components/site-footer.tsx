@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PirateMark } from "@/components/pirate-mark";
-import { API_CRATE_URL, REPO_URL, TEMPLATE_URL } from "@/data/site";
+import { API_CRATE_URL, RELEASES_URL, REPO_URL, TEMPLATE_URL, VERSION } from "@/data/site";
 
 export function SiteFooter({ links }: { links?: { href: string; label: string }[] }) {
   const items = links ?? [
@@ -16,7 +16,12 @@ export function SiteFooter({ links }: { links?: { href: string; label: string }[
           <PirateMark />
           Crook
         </Link>
-        <span>MIT licence · built in Rust</span>
+        <span>
+          MIT licence · built in Rust ·{" "}
+          <Link href={RELEASES_URL} className="text-ink-2 no-underline hover:text-foreground">
+            {VERSION}
+          </Link>
+        </span>
         <ul className="m-0 flex list-none flex-wrap gap-x-5 gap-y-3 p-0 sm:ml-auto">
           {items.map((l) => (
             <li key={l.href}>

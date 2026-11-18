@@ -36,8 +36,8 @@ export function CopyCommand({ command, className, wrap }: Props) {
       <code
         className={cn(
           "min-w-0 flex-1",
-          wrap === true && "break-all whitespace-pre-wrap",
-          wrap === "sm" && "break-all whitespace-pre-wrap sm:overflow-x-auto sm:whitespace-nowrap",
+          wrap === true && "wrap-anywhere whitespace-pre-wrap",
+          wrap === "sm" && "wrap-anywhere whitespace-pre-wrap sm:overflow-x-auto sm:whitespace-nowrap",
           !wrap && "overflow-x-auto whitespace-nowrap",
         )}
       >

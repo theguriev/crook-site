@@ -1,0 +1,1 @@
+Crook: a terminal whose unit of work is an agent, not a tab. A pirate smiley floats in a night harbour under a yellow moon.

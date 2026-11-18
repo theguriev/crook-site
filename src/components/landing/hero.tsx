@@ -20,7 +20,7 @@ export function Hero() {
     >
       <div className="hero-scrim pointer-events-none absolute inset-0" />
 
-      <div className="relative mx-auto flex min-h-[calc(100svh-7rem)] w-full max-w-[1160px] flex-col justify-between">
+      <div className="relative mx-auto flex min-h-[calc(100svh-9rem)] w-full max-w-[1160px] flex-col justify-between">
         <div>
           <Link
             href={RELEASES_URL}
@@ -37,7 +37,7 @@ export function Hero() {
           </h1>
           <p className="hero-in mt-5 max-w-[46ch] text-[16px] leading-[1.6] text-[#b7b9c0] [animation-delay:240ms]">
             A tab is one agent&rsquo;s workspace: its transcript, its directory, its state. The panel lists what is being worked on. A
-            dot on each row says how it is going.
+            mark on each row says how it is going, in a shape as well as a colour.
           </p>
         </div>
 

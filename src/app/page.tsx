@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Hero } from "@/components/landing/hero";
 import { AgentStatusDrawing, PirateChipDrawing } from "@/components/landing/drawings";
-import { Bullets, Chapter, Container, Eyebrow, Glass, Legend, PluginTile, Shot } from "@/components/landing/sections";
+import { Bullets, Chapter, Container, Eyebrow, Glass, Legend, Note, PluginTile, Shot } from "@/components/landing/sections";
 import { ChapterRail, WorldCanvas } from "@/components/landing/world-canvas";
 import { CopyCommand } from "@/components/copy-command";
 import { Button } from "@/components/ui/button";
@@ -54,8 +54,8 @@ const SHELL_FACTS: [string, React.ReactNode][] = [
   ["A real pty, a real emulator", <>xterm-compatible: colour, bold, italic, underline, strikeout, the alternate screen, ten thousand lines of scrollback, <code>SIGWINCH</code> on resize.</>],
   ["Panes and splits", <><kbd>cmd</kbd>+<kbd>d</kbd> splits the focused pane right, <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>d</kbd> down, so right then down is an agent beside two watchers and the same again is a 2×2. Every divider drags, at every depth.</>],
   ["Tabs that name themselves", <>OSC 0, 2 and 7: what you called it, else what the agent calls its work, else what it is running, else the directory it sits in.</>],
-  ["The header is the title bar", <>No strip of system chrome. Drag its empty space to move the window; macOS keeps its traffic lights exactly where every Mac app has them.</>],
-  ["Groups and worktrees", <>A worktree opened from a tab folds the two into a group with a count. Drag a row in, past the edge to take it out.</>],
+  ["The header is the title bar", <>No strip of system chrome. Drag its empty space to move the window; macOS keeps its traffic lights exactly where every Mac app has them. In a narrow window the tabs fold into a drawer.</>],
+  ["Groups and worktrees", <>A worktree opened from a tab folds the two into a group under its branch. Drag a row in, past the edge to take it out.</>],
   ["Pictures that are the same everywhere", <><code>--snapshot</code> renders one frame of the real view tree to a PNG. Every screenshot on this page was made that way.</>],
 ];
 
@@ -90,15 +90,15 @@ export default function LandingPage() {
               <div className="grid gap-3.5 md:max-w-[380px]">
                 <Shot
                   src={tabs}
-                  alt="The tab panel: four agent sessions with a coloured status dot and the branch each is on, two of them folded into a group"
+                  alt="The tab panel: agent sessions with a status mark and the branch each is on, a bell on the one that waits and a cross on the one that failed, two of them folded into a group"
                 />
                 <Legend />
-                <p className="text-[13.5px] text-muted-foreground">
+                <Note>
                   The panel as Crook renders it: one row per agent, the branch under the title, two related tabs folded into a group.
-                </p>
+                </Note>
               </div>
               <AgentStatusDrawing />
-              <p className="text-[13.5px] text-muted-foreground">Drawn, not captured: the header chip, three rows, and the hook lines behind them.</p>
+              <Note>Drawn, not captured: the header chip, three rows, and the hook lines behind them.</Note>
             </div>
           }
         >
@@ -111,7 +111,7 @@ export default function LandingPage() {
               <>Crook&rsquo;s plugin makes Claude Code say all of it by itself. <strong>Settings › Agents</strong> connects it in one click, and Codex and Copilot CLI the same way: Crook types the agent&rsquo;s own install commands into a tab you can watch, and says when the plugin is behind. <code>crook --agent-hooks</code> prints the hooks to merge by hand.</>,
               <>The same plugin hands Claude Code <code>crook mcp</code>: ask in the chat and it opens a tab or a split with a command, waits for it, reads what it printed and closes it. Only its own panes, and it can neither type into a pane nor answer a permission request.</>,
               <>With no hooks at all, Claude Code&rsquo;s own title still says running and idle.</>,
-              <>A row waiting on you is washed amber. The header counts them, and <kbd>cmd</kbd>+<kbd>j</kbd> goes to the next one.</>,
+              <>A row waiting on you is washed amber and its mark carries a bell; a failed one carries a cross, so the status reads without the colour. The header counts them, and <kbd>cmd</kbd>+<kbd>j</kbd> goes to the next one.</>,
               <>The window title carries the count, so a switcher tells three Crooks apart and says which one stopped for you. Behind another window, a pane that turns amber posts a desktop notification on Linux and from Crook.app on macOS, where the dock carries the count.</>,
             ]}
           />
@@ -127,7 +127,7 @@ export default function LandingPage() {
               <Shot
                 src={answerCard}
                 alt="The card: Claude Code wants to run a command, the tab and directory, the whole command, what Claude Code says it is for, that it is asking in its tab too, and the buttons Allow once, Deny, Go to tab and Not now, with Not now filled"
-                caption="The card, a moment after it opened: Allow once is still greyed, and Not now is the default."
+                caption="The card: the whole command, where it runs, what Claude Code says it is for, and Not now as the default."
               />
               <Shot
                 src={answerList}
@@ -174,6 +174,7 @@ export default function LandingPage() {
           <Bullets
             items={[
               <>Hover copies exactly that command and its output. No neighbour&rsquo;s text, no trailing blank rows.</>,
+              <>A command that failed says its exit code, and one that ran a second or more says for how long.</>,
               <>Ten thousand commands survive a <code>clear</code>, a resize and the emulator&rsquo;s own history evicting anything.</>,
               <>An agent&rsquo;s whole session is one open block. Past its newest 500 lines or so it is kept as rows rather than grid cells: 6.3 MiB for ten thousand rows at 200 columns, where it was 46.9.</>,
               <>Blocks are what find, the palette and the markdown plugin work on.</>,
@@ -220,14 +221,14 @@ export default function LandingPage() {
           aside={
             <Shot
               src={palette}
-              alt="The command palette reading rec: two commands, one tab with its directory, and five settings rows naming the page each lives on"
+              alt="The command palette reading rec: three commands, the chosen one showing its chord and its id, one tab with its directory, and five settings rows naming the page each lives on"
               caption="“rec”: commands, one tab with the directory it is working in, and settings rows that name their page."
             />
           }
         >
           <p>
             Commands, open tabs and every settings row, each kind under its own heading when there is more than one kind of answer. A command
-            row prints its chord; a tab row says where it is working; a settings row opens its page with the row on screen.
+            row prints its chord, and its id once it is the chosen one; a tab row says where it is working; a settings row opens its page with the row on screen.
           </p>
           <Bullets
             items={[
@@ -247,13 +248,13 @@ export default function LandingPage() {
             <div className="grid gap-4.5">
               <Shot
                 src={pluginsShot}
-                alt="The Plugins page: the Pirate's card with the two things it asks to be allowed, an Allow button beside them, and the pictures it carries under What it looks like"
+                alt="The Plugins page: installed plugins first and the built-in ones folded under them, the Pirate's card with the two things it asks to be allowed, an Allow button beside them, and the pictures it carries under What it looks like"
                 caption="The Pirate's card: two sentences it asks for, one button, and the pictures it carries inside its module."
               />
               <PirateChipDrawing />
-              <p className="text-[13.5px] text-muted-foreground">
+              <Note>
                 What the pirate draws in the header: the host&rsquo;s own artwork by name, and one number it asked permission to read.
-              </p>
+              </Note>
             </div>
           }
         >
@@ -315,7 +316,7 @@ export default function LandingPage() {
                   Applications; its first launch asks once to confirm a download, and Open starts it.
                 </p>
                 <p>Take the app rather than the bare binary: notifications, the dock&rsquo;s badge and Default terminal need it.</p>
-                <Button size="lg" nativeButton={false} render={<a href={DMG_URL} />}>
+                <Button size="lg" className="self-start" nativeButton={false} render={<a href={DMG_URL} />}>
                   Download the .dmg
                 </Button>
               </Platform>
@@ -331,12 +332,12 @@ export default function LandingPage() {
                   Built and tested on every change, but not yet run by anybody who works on Crook: there to try. It is unsigned, so
                   SmartScreen asks once; More info, then Run anyway.
                 </p>
-                <Button variant="outline" size="lg" nativeButton={false} render={<a href={WINDOWS_ZIP_URL} />}>
+                <Button variant="outline" size="lg" className="self-start" nativeButton={false} render={<a href={WINDOWS_ZIP_URL} />}>
                   Download the .zip
                 </Button>
               </Platform>
             </div>
-            <p className="mt-6.5 max-w-[70ch] text-[14.5px] text-muted-foreground [&_code]:rounded [&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-px">
+            <p className="mt-6.5 max-w-[70ch] rounded-lg bg-black/45 px-3.5 py-2.5 text-[14.5px] text-muted-foreground backdrop-blur-md [&_code]:rounded [&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-px">
               Building it yourself takes the Rust toolchain <code>rust-toolchain.toml</code> pins, and no build scripts. <code>script/run</code>{" "}
               starts it from the checkout and <code>script/bundle</code> makes the release binary; <code>--snapshot</code> draws a frame to a PNG without opening a window.
             </p>
@@ -353,7 +354,7 @@ export default function LandingPage() {
 
 function Platform({ title, meta, children }: { title: string; meta: string; children: React.ReactNode }) {
   return (
-    <div className="glass rounded-2xl p-5.5 [&>p]:mb-4 [&>p]:text-[15px] [&>p]:text-ink-2">
+    <div className="glass flex flex-col rounded-2xl p-5.5 [&>:last-child]:mt-auto [&>p]:mb-4 [&>p]:text-[15px] [&>p]:text-ink-2">
       <h3 className="mb-1 text-[19px] font-semibold">{title}</h3>
       <div className="mb-3.5 font-mono text-[12.5px] text-muted-foreground">{meta}</div>
       {children}
