@@ -1,8 +1,8 @@
 // Hand-kept: bump VERSION and RELEASE_LINE after each Crook release. A build-time fetch of the
 // latest release would make every image build depend on GitHub answering, for one line of copy.
-export const VERSION = "v0.1.43";
+export const VERSION = "v2.0.0";
 export const RELEASE_LINE =
-  "coding agents connect to Crook in one click, from Settings › Agents";
+  "a tab says its status with a shape as well as a colour, and every icon button names itself";
 export const REPO_URL = "https://github.com/theguriev/crook";
 export const RELEASES_URL = "https://github.com/theguriev/crook/releases";
 export const ARCHITECTURE_URL = "https://github.com/theguriev/crook/blob/main/docs/architecture.md";
